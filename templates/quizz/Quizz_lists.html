@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load custom_templatetag %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for quizz in all_quizzez %}
+
+    <p>
+        {{ quizz.description }}
+        {{ quizz.questions_count }}
+    </p>
+
+
+{% endfor %}
+
+</body>
+</html>
+
+{% endblock %}

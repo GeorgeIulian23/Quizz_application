@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    
+
+</head>
+<body>
+
+    {% if quizzez  %}
+
+        {% for i in quizzez %}
+
+            <style>
+                .content {
+                    max-width: 500px;
+                    margin: auto;
+                    text-align: center;
+                    display: inline;
+                }
+            </style>
+            <div class="content">
+            <div>
+            <li>
+                <a href="{% url 'quizz:quiz_view'  %}">
+                    {{ i.name }}
+
+                </a>
+            </li>
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+{% endblock %}
+</body>
+</html>
