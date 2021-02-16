@@ -24,18 +24,19 @@ class Question(models.Model):
         return self.label
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    text = models.CharField(max_length=1000)
-    is_correct = models.BooleanField(default=False)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True, blank=True)
+    text = models.CharField(max_length=1000, null=True, blank=True)
+    is_correct = models.IntegerField(default=1,null=True,blank=True)
 
     def __str__(self):
         return self.text
 
 
 class QuizTakers(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-    correct_answers = models.IntegerField(default=0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    quiz = models.ForeignKey(Question, on_delete=models.CASCADE, null=True, blank=True)
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE, null=True, blank=True)
+    correct_answers = models.IntegerField(default=0, null=True, blank=True)
 
     def __str__(self):
         return self.user.username

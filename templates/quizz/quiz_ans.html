@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load custom_templatetag %}
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Quiz response</title>
+
+
+    </head>
+
+    {% csrf_token %}
+    <img src="{% static 'img2.jpg' %}" style="width: 20%; left: 10px;right: 20px;">
+    <body id ="bg" style="background-image: url('{% static "img2.jpg" %}')">
+        <h4>
+
+
+        <a>
+
+           Scorul obtinut este {{ rezultat}} din 100 de puncte pentru user-ul:
+           {{ user.username  }} cu adresa de e-mail {{ user.email }}
+       </a>
+        </h4>
+       <a href="{% url 'quizz:home' %}>
+
+           <p>
+
+
+               Revino la meniul principal
+
+           </p>
+       </a>
+    </body>
+    </html>
+{% endblock %}
