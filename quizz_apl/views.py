@@ -73,8 +73,8 @@ class New_quiz_Taker(LoginRequiredMixin, CreateView):
     template_name = 'quizz/quiz_taker.html'
     form_class = QuizTaker
 
-    def get_success_url(self):
-        return reverse("quizz:quiz_ans")
+    def get_success_url(self,*args):
+        return reverse("quizz:quiz_ans",args=[self.request.GET.get('quiz')])
 
     def get_context_data(self, **kwargs):
         data = super(New_quiz_Taker, self).get_context_data(**kwargs)
@@ -130,8 +130,8 @@ class ListareRaspuns(LoginRequiredMixin,ListView):
     def get_context_data(self, **kwargs):
         rezultat = 0
         items = super(ListareRaspuns, self).get_context_data(**kwargs)
-        # print(QuizTakers.objects.filter(user_id=self.request.GET.get('username')))
-        items['correct'] = QuizTakers.objects.filter(correct_answers=1,quiz_id =1,user_id=1).values('correct_answers')
+        #print(QuizTakers.objects.filter(user__quiztakers__quiz_id=self.request.GET.get('user_id')))
+        items['correct'] = QuizTakers.objects.filter(correct_answers=1,quiz_id=self.kwargs['pk'],user_id=self.request.user.id).values('correct_answers')
 
         for i in items['correct']:
             for value in i.values():

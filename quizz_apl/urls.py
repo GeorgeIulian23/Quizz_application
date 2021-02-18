@@ -12,6 +12,6 @@ urlpatterns = [
     path('',views.Create.as_view(), name = 'home'),
     path('home_adauga/',views.Create.as_view(), name = 'add'),
     path('quiz_taker/',views.New_quiz_Taker.as_view(), name = 'quizz'),
-    path('quiz_taker/answer/',views.ListareRaspuns.as_view(), name = 'quiz_ans')
+    path('quiz_taker/answer/<int:pk>/',views.ListareRaspuns.as_view(), name = 'quiz_ans')
 
 ]
