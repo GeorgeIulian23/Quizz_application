@@ -130,7 +130,6 @@ class ListareRaspuns(LoginRequiredMixin,ListView):
     def get_context_data(self, **kwargs):
         rezultat = 0
         items = super(ListareRaspuns, self).get_context_data(**kwargs)
-        #print(QuizTakers.objects.filter(user__quiztakers__quiz_id=self.request.GET.get('user_id')))
         items['correct'] = QuizTakers.objects.filter(correct_answers=1,quiz_id=self.kwargs['pk'],user_id=self.request.user.id).values('correct_answers')
 
         for i in items['correct']:
@@ -138,7 +137,7 @@ class ListareRaspuns(LoginRequiredMixin,ListView):
                 if value ==1:
                     rezultat+=1
 
-        items['rezultat'] = rezultat * 10
+        items['rezultat'] = rezultat * 10 * 2
         return items
 
 def registerPage(request):
@@ -161,7 +160,6 @@ def loginPage(request):
         password = request.POST.get('password')
 
         user = authenticate(request,username=username,password=password)
-        print(username,password)
         if user is not None:
             login(request,user)
             return redirect("quizz:homee")

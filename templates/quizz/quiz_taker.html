@@ -12,7 +12,7 @@
     {% for item in answer_objects %}
         {% if forloop.counter|add:3|modulo:4 == 0 %}
             {{ item.quiz.description }}
-            <input type="text  " id="id_label_{{ item.question.id  }}" value="{{ item.question.label }}" name="label_{{ item.question.id  }}">
+            <input type="text" size="120"  id="id_label_{{ item.question.id  }}" value="{{ item.question.label }}" name="label_{{ item.question.id  }}">
         {% endif %}
             <p>
                 <input type="radio" id="id_answer1_{{ item.question.id  }}" value="{{ item.text }}" name="asnwer1_{{ item.question.id  }}">{{ item.text }}
